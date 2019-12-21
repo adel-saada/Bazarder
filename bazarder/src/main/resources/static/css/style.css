@@ -1,0 +1,120 @@
+.lien-menu:hover {
+	text-decoration: none;
+}
+
+h1 {
+	font-family : 'Hobo Std';
+}
+
+.logo-principal {
+	width: 50px;
+	height: 50px;
+}
+
+a {
+	color : grey;
+}
+.yellow-logo {
+	color : #f2ce6c;
+}
+
+.yellow-logo-background {
+	background-color: #f2ce6c;
+}
+
+/*.green-logo {
+	color : #53c676;
+}
+*/
+.orange-logo {
+	color : #ee8472;
+}
+
+
+.logo {
+	width: 30px;
+	height: 30px;
+}
+
+.phone {
+	margin-top: 2px;
+}
+
+.background-image {
+	float : right;
+	width: 300px;
+	padding-top: 35px;
+}
+
+
+.black {
+	color : black;
+}
+
+.image-etape1 {
+	width: 250px;
+	margin-left: 50px;
+}
+
+.image-etape2, .image-etape3 {
+	width: 400px;
+}
+
+.color-red {
+	color : #e22248;
+}
+
+.icone-form {
+	width : 15px;
+	height: 15px;
+}
+
+.container-contact {
+	margin-top : 100px;
+}
+
+
+.footer-style {
+	background-color: white;
+}
+
+/* phone */
+@media (max-width: 500px) {
+
+	body {
+		margin-top: 30px;
+	}
+
+  	.menu, .mail {
+  		display: none;
+  	}
+
+  	.wrapper-carousel {
+  		display : none;
+  	}
+
+  	.phone {
+		margin-top: 2px;
+		font-size: 12px;
+	}
+
+	.phone img {
+		width: 15px;
+		height: 15px;
+	}
+
+}
+
+/* tablette */
+@media (max-width: 900px) {
+
+	body {
+		margin-top: 30px;
+	}
+
+  	.menu {
+  		display: none;
+  	}
+
+
+}

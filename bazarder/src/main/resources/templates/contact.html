@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}" /> 
+  <link href="css/style.css" rel="stylesheet" th:href="@{/css/style.css}" />
+  <link href="css/carousel.css" rel="stylesheet" th:href="@{/css/carousel.css}" />
+  <link href="css/form-style.css" rel="stylesheet" th:href="@{/css/form-style.css}" />
+  	<title>Vos encombrants débarassés rapidemment | Bazarder</title>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="container-fluid">
+      <header class="page-header">        
+        <nav class="navbar fixed-top navbar-light bg-light Regular shadow">
+            <a class="navbar-nav lien-menu" href="/index" th:href="@{/}" >
+				<h1>
+                	<span class="yellow-logo">Bazar</span><span class="orange-logo">der</span>
+                	<img class="logo-principal" src="images/icones/logo-camion.png" alt="" />				
+				</h1>
+           	</a>
+
+            <ul class="list-inline menu">
+              <li class="list-inline-item"><a class="nav-link link-etape1" th:href="@{/#etape-1}">Etape 1</a></li>
+              <li class="list-inline-item"><a class="nav-link link-etape2" th:href="@{/#etape-2}">Etape 2</a></li>
+              <li class="list-inline-item"><a class="nav-link link-etape3" th:href="@{/#etape-3}">Etape 3</a></li>
+              <li class="list-inline-item"><a class="nav-link link-contactez" th:href="@{/contact}">Contact</a></li>
+            </ul>
+
+             <div class="phone">
+                <img class="logo" src="images/icones/logo-phone.png">
+                <span>06 88 88 88 88</span>
+              </div>
+
+
+        </nav>
+      </header>
+    </div>
+     
+    
+    <div th:if="${envoi} == true" >
+		<script>
+		
+			$(document).ready(function() {
+				$('#modal').modal('show'); 	
+			});
+	    </script>
+   	</div>
+    <div th:if="${envoi} == false" >
+		<script>
+		
+			$(document).ready(function() {
+				$('#modalProbleme').modal('show'); 	
+			});
+	    </script>
+   	</div>	  
+	    <!-- contact us -->
+	<div class="container container-contact" id="contactez">
+	    <div class="row justify-content-center">
+	      <div class="col-md-9 mt-9  rounded">
+	        <h1 class="text-center yellow-logo">Nous <span class="orange-logo">contacter</span></h1>
+	        <hr class="bg-light">
+	        <h5 class="text-center text-success"></h5>
+	        <form th:action="@{/mail}" method="POST" th:object="${mail}" id="form-box" class="p-2">
+				
+	          <div class="form-group input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text"><img class="icone-form" src="images/icones/form-user.png"/></span>
+	            </div>
+	            <input type="text" name="name"  th:field="*{nom}" class="form-control" placeholder="votre nom" required>
+	          </div>
+	   
+	          <div class="form-group input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text"><img class="icone-form" src="images/icones/form-email.png"/></span>
+	            </div>
+	            <input type="email" name="email"  th:field="*{adresseMail}" class="form-control" placeholder="votre email" required>
+	          </div>
+	
+	          <div class="form-group input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text"><img class="icone-form" src="images/icones/form-arobas.png"/></span>
+	            </div>
+	            <input type="text" name="subject"  th:field="*{titre}"class="form-control" placeholder="titre de votre message" required>
+	          </div>
+	
+	          <div class="form-group input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text"><img class="icone-form" src="images/icones/form-comment.png"/></span>
+	            </div>
+	            <textarea name="msg" id="msg"  th:field="*{message}" class="form-control" placeholder="Ecrire votre message" cols="30" rows="4" required></textarea>
+	          </div>
+	          <div class="form-group">
+	            <input type="submit" name="submit" id="submit" class="btn yellow-logo-background btn-block" value="Envoyer">
+	          </div>
+	        </form>
+	        
+	        <div class="orange-logo" th:each="erreur : ${mapErreurs}">
+	        	<table>
+	        		<tr>
+	            		<td th:text="${erreur.key}">keyvalue</td>
+	            		<td th:text="${erreur.value}">num</td>
+	        		</tr>
+	        	</table>
+	        </div>
+	        	
+	      </div>
+	    </div>
+	  </div>
+
+	  
+	<div id="modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+    	<div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title"><span class="yellow-logo">Mail </span><span class="orange-logo">envoyé</span></h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+		  <div class="modal-body">
+		        <p>Votre mail a bien été transmis, nous reviendrons vers vous rapidemment.</p>	  
+		  </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	      </div>
+  		</div>
+  	  </div>
+	</div>
+	
+	<div id="modalProbleme" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+				        <h4 class="modal-title"><span class="yellow-logo">Mail </span><span class="orange-logo">envoyé</span></h4>
+
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				  <div class="modal-body">		  
+			        	<p>L'envoi du mail a échoué, merci de retenter l'envoi.</p>
+				  </div>
+				  
+			    </div>
+		
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+			      </div>
+			    </div>
+		  </div>
+	</div>
+		
+    <!-- footer -->
+
+    <div class="container-fluid footer-style">
+      <footer>
+
+      </footer>
+    </div>
+
+
+
+	<script src="js/bootstrap.js"></script>
+  	<script src="js/decoration-menu.js"></script>
+</body>
+</html>
